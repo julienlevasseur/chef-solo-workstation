@@ -1,0 +1,7 @@
+{
+    "workstation": {
+    },
+    "run_list": [
+        "recipe[workstation::default]"
+    ]
+}
