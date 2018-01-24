@@ -1,5 +1,30 @@
 {
     "workstation": {
+        "packages": [
+            "vim",
+            "git",
+            "npm"
+        ],
+        "gems": [
+            "bunlder",
+            "rake"
+        ],
+        "pip": {
+            "ansible": "2.3.2.0",
+            "pyOpenSSL": "17.5.0",
+        },
+        "git": {
+            "config": [
+                {
+                    "key": "color.ui",
+                    "value": "auto"
+                },
+                {
+                    "key": "pull.rebase",
+                    "value": "true"
+                }
+            ]
+        }
     },
     "run_list": [
         "recipe[workstation::default]"
