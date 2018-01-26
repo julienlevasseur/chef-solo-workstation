@@ -5,7 +5,9 @@ A Chef-Solo package to wrap [workstation](https://github.com/julienlevasseur/che
 
 # Table of Contents
 
-**[Usage](#usage)**
+**[Getting started](#getting-started)**
+
+* [Install Chef-Solo](#install-chef-solo)
 
 * [run.sh](#run.sh)
 
@@ -27,22 +29,36 @@ A Chef-Solo package to wrap [workstation](https://github.com/julienlevasseur/che
 
 * [Atom](#atom)
 
-# Usage
+# Getting started
+
+## Install Chef-Solo
+
+1. Download the [ChefDK](https://downloads.chef.io/chefdk/stable).
+
+2. Install it.
+
+3. Check the install
+   ```bash
+    chef-solo -v
+    Chef: 13.6.4
+   ```
 
 ## run.sh
 
 The `run.sh` tool is here to help you with this chef-solo package.
 
-`./run.sh --help` - Show help
+`./run.sh --help / -H` - Show help
 
-`./run.sh --vendor` - Vendoring dependencies
+`./run.sh --init / -I` - Initialize the chef-solo package
+
+`./run.sh --vendor / -V` - Vendoring dependencies
 
 > Vendoring is the moving of all 3rd party items such as plugins, gems and even rails into the /vendor directory. This is one method for ensuring that all files are deployed to the production server the same as the dev environment.
 > With Berkshelf, the vendoring folder is `berks-cookbooks`.
 
-`./run.sh --whyrun` - Execute chef-solo un whyrun mode (nothing will be updated)
+`./run.sh --whyrun / -W` - Execute chef-solo un whyrun mode (nothing will be updated)
 
-`./run.sh --test` - Execute the [Inspec](https://www.inspec.io/) tests.
+`./run.sh --test / -T` - Execute the [Inspec](https://www.inspec.io/) tests.
 
 `./run.sh` - Execute a whyrun as first step, then, if the whyrun would have updated one resource or more, exeute the chef-solo convergence and finally run the Inspec tests.
 

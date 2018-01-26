@@ -12,7 +12,24 @@ set_ownership() {
 	sudo chown -R $USER. .
 }
 
+get_os_name() {
+	cat /etc/os-release|head -1|grep -o '".*"'|sed 's/"//g'
+}
+
+init() {
+	printf "${GREEN}[INFO] Create a symlink to /opt/chef-solo${NC}\n"
+	ln -s $PWD /opt/chef-solo
+#	printf "${GREEN}[INFO] Checking system type ...${NC}\n"
+#	if [ $(get_os_name) == "Linux" ]; then
+#		if [ `cat /etc/os-release|head -1|grep -o '".*"'|sed 's/"//g'` == "Ubuntu" ]
+#			
+#	elif [ $(get_os_name) == "Darwin" ]; then
+#
+#	fi
+}
+
 berks_vendor() {
+	rm Berksfile.lock
 	sudo berks vendor
 	set_ownership
 }
@@ -36,15 +53,19 @@ help() {
 	echo "Usage: run.sh [--help] [--vendor] [--whyrun] [--test]"
 	echo " "
 	echo "--help 		| -h	 Print this message."
+	echo "--init	| -I 	 Initialize the chef-solo setup."
 	echo "--vendor 	| -V	 Vendoring dependencies."
 	echo "--whyrun 	| -W	 Execute a Why Run."
-	echo "--test 		| -t	 Execute test suite."
+	echo "--test 		| -T	 Execute test suite."
 }
 
 
 if [[ $ARG == '--help' || $ARG == '-h' ]]
 then
 	help
+elif [[ $ARG == '--init' || $ARG == '-I' ]]
+then
+	init
 elif [[ $ARG == '--vendor' || $ARG == '-V' ]]
 then
 	printf "${GREEN}[INFO] Cleaning berks-cookbooks folder${NC}\n"
