@@ -9,6 +9,12 @@ A Chef-Solo package to wrap [workstation](https://github.com/julienlevasseur/che
 
 * [Install Chef-Solo](#install-chef-solo)
 
+* [Init the package](#init-the-package)
+
+* [Customize your workstation](#customize-your-workstation)
+
+**[About the repo content](#about-the-repo-content)**
+
 * [run.sh](#run.sh)
 
 * [solo.rb](#solo.rb)
@@ -42,6 +48,17 @@ A Chef-Solo package to wrap [workstation](https://github.com/julienlevasseur/che
     chef-solo -v
     Chef: 13.6.4
    ```
+
+## Init the package
+
+This Chef-Solo package expect to find the attributes and solo.rb files in `/opt/chef-solo` to be able to schedule the chef run periodically.
+The init create a symlink from where you clone the repo to `/opt/chef-solo`.
+
+## Customize your workstation
+
+Edit `attributes.json` file with you preferences. (refer to [Workstation Setup Examples](#workstation-setup-examples))
+
+# About the repo content
 
 ## run.sh
 
