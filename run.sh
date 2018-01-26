@@ -18,7 +18,7 @@ get_os_name() {
 
 init() {
 	printf "${GREEN}[INFO] Create a symlink to /opt/chef-solo${NC}\n"
-	ln -s $PWD /opt/chef-solo
+	sudo ln -s $PWD /opt/chef-solo
 #	printf "${GREEN}[INFO] Checking system type ...${NC}\n"
 #	if [ $(get_os_name) == "Linux" ]; then
 #		if [ `cat /etc/os-release|head -1|grep -o '".*"'|sed 's/"//g'` == "Ubuntu" ]
@@ -29,7 +29,9 @@ init() {
 }
 
 berks_vendor() {
-	rm Berksfile.lock
+	if [ -f Berksfile.lock ]; then
+		rm Berksfile.lock
+	fi
 	sudo berks vendor
 	set_ownership
 }
